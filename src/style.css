@@ -1,4 +1,50 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow: hidden-y;
+  font-family: Poppins, sans-serif;
+}
+
+.webgl {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+nav,
+h1 {
+  position: relative;
+  z-index: 10;
+  color: white;
+}
+
+nav {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+h1 {
+  font-size: 35px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  translate: -50% -25%;
 }
