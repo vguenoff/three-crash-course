@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import './style.css'
 
 // Sizes
@@ -22,12 +23,21 @@ scene.add(sphere)
 
 // Light
 const light = new THREE.PointLight(0xffffff, 1.2, 100)
-light.position.set(0, 10, 10)
+light.position.set(5, 10, 10)
 scene.add(light)
 
-// View
-camera.position.z = 10
+// Controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+controls.enablePan = false
+controls.enableZoom = false
+controls.autoRotate = true
+controls.autoRotateSpeed = 3
 
+// View
+camera.position.z = 7
+
+renderer.setPixelRatio(2)
 renderer.render(scene, camera)
 
 // Resize
@@ -40,6 +50,7 @@ window.addEventListener('resize', () => {
 
 // Loop
 function loop() {
+  controls.update()
   renderer.render(scene, camera)
   window.requestAnimationFrame(loop)
 }
