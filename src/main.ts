@@ -41,14 +41,20 @@ controls.autoRotateSpeed = 3
 
 // Mouse animation colors
 let mouseDown = false
-window.addEventListener('mousedown', () => (mouseDown = true))
-window.addEventListener('mouseup', () => (mouseDown = false))
-window.addEventListener('mousemove', e => {
+const moveHandler = (e: MouseEvent | TouchEvent) => {
   if (mouseDown) {
     const rgb = [Math.round((e.pageX / w) * 255), Math.round((e.pageY / h) * 255), Math.round(Math.random() * 255)]
     gsap.to(sphere.material.color, new THREE.Color(`rgb(${rgb.join(',')})`))
   }
-})
+}
+
+window.addEventListener('mousedown', () => (mouseDown = true))
+window.addEventListener('touchstart', () => (mouseDown = true))
+window.addEventListener('mouseup', () => (mouseDown = false))
+window.addEventListener('touchend', () => (mouseDown = false))
+
+window.addEventListener('mousemove', moveHandler)
+window.addEventListener('touchmove', moveHandler)
 
 // View
 camera.position.z = 10
